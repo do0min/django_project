@@ -2,15 +2,40 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>2OO5938</title>
+
 </head>
 <body>
-<h1>{{question.question_text}}</h1>
-<ul>
-    {% for choice in question.choice_set.all %}
-        <li>{{choice.choice_text}} -- {{choice.votes}} vote{{choice.votes|pluralize}}</li>
-    {% endfor %}
-</ul>
+{% extends 'base.html' %}
+
+{% block content %}
+
+{% if question.question_text %}
+    <h1>{{question.question_text}}</h1>
+    <ul>
+        {% for choice in question.choice_set.all %}
+            <li>{{choice.choice_text}} -- {{choice.votes}} vote{{choice.votes|pluralize}}</li>
+        {% endfor %}
+    </ul>
+    {% if question %}
+    <h1>{{question.question_text}}</h1>
+    <ul>
+        {% for choice in question.choice_set.all %}
+            <li>{{choice.choice_text}} -- {{choice.votes}} vote{{choice.votes|pluralize}}</li>
+        {% endfor %}
+    </ul>
+{% else %}
+    <p>제발</p>
+{% endif %}
+{% endif %}
+
+
 <a href="{% url 'polls:detail' question.id %}">Vote again?</a>
+
+<br>
+<br>
+
+<a href="{% url 'polls:index' %}">main</a>
+{% endblock %}
 </body>
 </html>

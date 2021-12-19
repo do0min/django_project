@@ -2,14 +2,21 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>2OO5938</title>
 </head>
 <body>
+{% extends 'base.html' %}
+
+{% block title %}
+    Polls Detail
+{% endblock %}
+{% block content %}
 <h1>{{question.question_text}}</h1>
 {% if error_message %}
     <p><strong>{{error_message}}</strong></p>
 
 {% endif%}
+
 <form action="{% url 'polls:vote' question.id %}" method = "post">
     {% csrf_token %}
     {% for choice in question.choice_set.all %}
@@ -18,5 +25,6 @@
     {% endfor %}
     <input type="submit" value="Vote">
 </form>
+{% endblock %}
 </body>
 </html>

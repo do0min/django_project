@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>2OO5938</title>
 </head>
 <body>
 {% extends 'base.html' %}
@@ -12,6 +12,15 @@
 {% block content %}
   {{object.site_name}}<br/>
   {{object.url}}
+    <form action="" method="post">
+        {% csrf_token %}
+        {{form.as_p}}
+        <br>
+        <a href="{% url 'bookmark:update' pk=bookmark.id %}" class="btn btn-success btn-sm">Modify</a>
+        <a href="{% url 'bookmark:delete' pk=bookmark.id %}" class="btn btn-danger btn-sm">Delete</a>
+        <input type="button" value="BACK" onClick="history.go(-1)">
+    </form>
 {% endblock %}
+
 </body>
 </html>
